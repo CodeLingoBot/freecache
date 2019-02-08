@@ -27,7 +27,7 @@ func NewRingBuf(size int, begin int64) (rb RingBuf) {
 	return
 }
 
-// Create a copy of the buffer.
+// Dump; Create a copy of the buffer.
 func (rb *RingBuf) Dump() []byte {
 	dump := make([]byte, len(rb.data))
 	copy(dump, rb.data)
@@ -50,7 +50,7 @@ func (rb *RingBuf) End() int64 {
 	return rb.end
 }
 
-// read up to len(p), at off of the data stream.
+// ReadAt; up to len(p), at off of the data stream.
 func (rb *RingBuf) ReadAt(p []byte, off int64) (n int, err error) {
 	if off > rb.end || off < rb.begin {
 		err = ErrOutOfRange
